@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: weather-tracker
+  datasource:
+    url: jdbc:postgresql://localhost:5438/weather-db
+    username: postgres
+    password: 12345
