@@ -1,3 +1,8 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /weather-tracker
+
 spring:
   application:
     name: weather-tracker

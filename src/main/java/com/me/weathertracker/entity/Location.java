@@ -24,7 +24,7 @@ public class Location {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private AppUser user;
 
     @Column(nullable = false)
     private BigDecimal latitude;
