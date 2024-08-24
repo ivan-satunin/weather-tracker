@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+</head>
+<body>
+<h1>Sign up</h1>
+<form method="post" data-th-action="@{/sign-up}">
+    <label>
+        Username or email:
+        <input type="text" name="login">
+    </label>
+    <label>
+        Password:
+        <input type="password" name="password">
+    </label>
+    <br>
+    <button type="submit">Sign up</button>
+</form>
+<div>
+    Already have an account - <a data-th-href="@{/sign-in}">Sign in</a>
+</div>
+</body>
+</html>
