@@ -1,6 +1,5 @@
-package com.me.weathertracker.repository;
+package com.me.weathertracker.auth;
 
-import com.me.weathertracker.entity.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,5 +1,6 @@
-package com.me.weathertracker.entity;
+package com.me.weathertracker.weather.location;
 
+import com.me.weathertracker.auth.AppUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

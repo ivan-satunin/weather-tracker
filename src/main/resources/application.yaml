@@ -1,7 +1,10 @@
 server:
   port: 8080
-  servlet:
-    context-path: /weather-tracker
+
+weather:
+  api:
+    uri: https://api.openweathermap.org/data/2.5/weather
+    key: a1dabe8ddd734cd61cfdd9c3b2396966
 
 spring:
   application:

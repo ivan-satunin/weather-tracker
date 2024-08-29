@@ -1,9 +1,8 @@
-package com.me.weathertracker.controller;
+package com.me.weathertracker.auth.controller;
 
-import com.me.weathertracker.service.AppUserService;
-import com.me.weathertracker.controller.payload.NewUserPayload;
+import com.me.weathertracker.auth.AppUserService;
+import com.me.weathertracker.auth.controller.payload.NewUserPayload;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,10 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/sign-up")
+@RequestMapping("/weather-tracker/sign-up")
 public class SignUpController {
     private final AppUserService userService;
-    private final AuthenticationManager authenticationManager;
 
     @GetMapping
     public String signUp() {
@@ -25,6 +23,6 @@ public class SignUpController {
     public String createUser(NewUserPayload newUserPayload) {
         userService.register(newUserPayload.login(), newUserPayload.password());
 
-        return "redirect:";
+        return "redirect:/weather-tracker";
     }
 }

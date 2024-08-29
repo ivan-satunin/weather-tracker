@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Sign in</h1>
-<form method="post" data-th-action="@{/sign-in}">
+<form method="post" data-th-action="@{/weather-tracker/sign-in}">
     <input type="text" placeholder="Username or email" name="username" required>
     <br>
     <input type="password" placeholder="Password" name="password" required>
@@ -14,7 +14,7 @@
     <button type="submit">Sign in</button>
 </form>
 <div>
-    Don't hava account yet? - <a data-th-href="@{/sign-up}">Sign up</a>
+    Don't hava account yet? - <a data-th-href="@{/weather-tracker/sign-up}">Sign up</a>
 </div>
 </body>
 </html>

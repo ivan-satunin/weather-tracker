@@ -1,4 +1,4 @@
-package com.me.weathertracker.controller;
+package com.me.weathertracker.auth.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class SignInController {
 
-    @GetMapping("/sign-in")
+    @GetMapping("/weather-tracker/sign-in")
     public String signIn() {
         return "auth/sign-in";
     }

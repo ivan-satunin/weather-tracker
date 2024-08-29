@@ -6,15 +6,31 @@
 </head>
 <body>
 <header>
-    <h1>Weather tracker</h1>
-    <form method="post" data-th-action="@{/search}">
-        <input type="text" name="q" placeholder="Enter the location name" required>
-        <button type="submit">Search</button>
-    </form>
-    <div data-th-text="${#authentication.name}"></div>
-    <form method="post" data-th-action="@{/sign-out}">
-        <button type="submit">Sign out</button>
-    </form>
+    <div class="container">
+        <div class="row">
+            <h3 class="col">Weather tracker</h3>
+            <div class="col">
+                <form method="get" data-th-action="@{/weather-tracker/search}">
+                    <input type="text" name="q" placeholder="Enter the location name" required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            <div class="col" data-th-if="${#authentication != null && #authentication.isAuthenticated()}">
+                <div data-th-text="${#authentication.name}"></div>
+                <form method="post" data-th-action="@{/weather-tracker/sign-out}">
+                    <button type="submit">Sign out</button>
+                </form>
+            </div>
+            <div class="col" data-th-if="${#authentication == null || !#authentication.isAuthenticated()}">
+                <form method="get" data-th-action="@{/weather-tracker/sign-in}">
+                    <button type="submit">Sign in</button>
+                </form>
+                <form method="get" data-th-action="@{/weather-tracker/sign-up}">
+                    <button type="submit">Sign up</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </header>
 </body>
 </html>
