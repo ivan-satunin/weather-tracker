@@ -2,31 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Weather tracker</title>
 </head>
 <body>
 <header>
-    <div class="container">
+
+    <h3 class="mt-2 ms-2 fw-bold">
+        <a data-th-href="@{/weather-tracker}" class="text-decoration-none link-dark">Weather tracker</a>
+    </h3>
+
+    <div class="container position-absolute top-0 end-0 mt-2 me-2">
         <div class="row">
-            <h3 class="col">Weather tracker</h3>
-            <div class="col">
-                <form method="get" data-th-action="@{/weather-tracker/search}">
-                    <input type="text" name="q" placeholder="Enter the location name" required>
-                    <button type="submit">Search</button>
-                </form>
-            </div>
-            <div class="col" data-th-if="${#authentication != null && #authentication.isAuthenticated()}">
-                <div data-th-text="${#authentication.name}"></div>
+            <div class="col-12 d-flex justify-content-end align-items-center"
+                 data-th-if="${#authentication != null && #authentication.isAuthenticated()}">
+                <div class="me-4" data-th-text="${#authentication.name}"></div>
                 <form method="post" data-th-action="@{/weather-tracker/sign-out}">
-                    <button type="submit">Sign out</button>
+                    <button type="submit" class="btn btn-outline-danger">Sign out</button>
                 </form>
             </div>
-            <div class="col" data-th-if="${#authentication == null || !#authentication.isAuthenticated()}">
+            <div class="col-12 d-flex justify-content-end align-items-center"
+                 data-th-if="${#authentication == null || !#authentication.isAuthenticated()}">
                 <form method="get" data-th-action="@{/weather-tracker/sign-in}">
-                    <button type="submit">Sign in</button>
+                    <button type="submit" class="btn btn-primary me-2">Sign in</button>
                 </form>
                 <form method="get" data-th-action="@{/weather-tracker/sign-up}">
-                    <button type="submit">Sign up</button>
+                    <button type="submit" class="btn btn-dark">Sign up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center" style="margin-top: 80px">
+        <div class="row w-50">
+            <div class="col-12">
+                <form method="get" data-th-action="@{/weather-tracker/search}">
+                    <div class="input-group">
+                        <input type="text" class="form-control rounded" name="q" placeholder="Enter the location name"
+                               required>
+                        <button class="btn btn-primary text-white" id="btn-search-location" type="submit">Search
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

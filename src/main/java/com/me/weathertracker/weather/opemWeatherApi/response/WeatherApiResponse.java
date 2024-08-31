@@ -31,8 +31,8 @@ public class WeatherApiResponse {
         @JsonProperty("temp_max")
         private double tempMax;
 
-        private double pressure;
-        private double humidity;
+        private int pressure;
+        private int humidity;
     }
 
     @Getter

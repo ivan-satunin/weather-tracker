@@ -2,20 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Search</title>
+    <link th:replace="fragments :: bootstrap-css"/>
 </head>
 <body>
 <div th:replace="~{header}"></div>
-<h1>Search Results</h1>
-<div>
-    <h2 data-th-text="${location.name}"></h2>
-    <p data-th-text="${location.country}"></p>
-    <form method="post" data-th-action="@{/weather-tracker/track}">
-        <input type="hidden" name="q" data-th-value="${location.name}">
-        <input type="hidden" name="lon" data-th-value="${location.lon}">
-        <input type="hidden" name="lat" data-th-value="${location.lat}">
-        <button type="submit">Track location</button>
-    </form>
+<div class="container">
+    <h1 class="mt-4 ms-2 mb-5">Search Results</h1>
+    <div class="d-flex flex-wrap gap-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title mb-3" data-th-text="${location.name}"></h3>
+                <h4 class="card-subtitle mb-3" data-th-text="${location.country}"></h4>
+                <form method="post" data-th-action="@{/weather-tracker/track}">
+                    <input type="hidden" name="q" data-th-value="${location.name}">
+                    <input type="hidden" name="lon" data-th-value="${location.lon}">
+                    <input type="hidden" name="lat" data-th-value="${location.lat}">
+                    <button type="submit" class="btn btn-dark">Track location</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -4,41 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Weather tracker</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link th:replace="fragments :: bootstrap-css"/>
+    <link th:replace="fragments :: bootstrap-icons"/>
 </head>
 <body>
 <div th:replace="~{header}"></div>
-<h2>Current Weather</h2>
-<div data-th-each="weather : ${weathers}">
-    <div>
-        <span data-th-text="${weather.name}"></span>
-        <span data-th-text="${weather.temp}"></span>
-        <span data-th-text="${weather.feelsLike}"></span>
+
+<div class="container">
+    <h2 class="mt-4 ms-2 mb-5">Current Weather</h2>
+    <div class="d-flex flex-wrap gap-4 justify-content-center">
+        <div class="card shadow-sm" style="min-width: 18rem;" data-th-each="weather : ${weathers}">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="card-title" data-th-text="${weather.locationName}"></h3>
+                            <h5 class="card-subtitle mb-5 text-muted">Current time</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 d-flex justify-content-center mb-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
+                                <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
+                            </svg>
+                        </div>
+                        <div class="col-6 text-end">
+                            <h2 class="text-primary" data-th-text="${weather.temp} + '°C'"></h2>
+                            <p data-th-text="'Feels like ' + ${weather.feelsLike} + '°C'"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 data-th-text="${#strings.capitalize(weather.description)}"></h4>
+                <div class="d-flex gap-3">
+                    <ul class="list-group w-50">
+                        <li class="list-group-item d-flex align-items-center h-100">
+                            <i class="bi bi-thermometer-low me-2"></i>
+                            <span data-th-text="'Min ' + ${weather.tempMin} + '°C'"></span>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center h-100">
+                            <i class="bi bi-clouds me-2"></i>
+                            <span data-th-text="'Clouds ' + ${weather.cloudiness} + '%'"></span>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center h-100">
+                            <i class="bi bi-wind me-2"></i>
+                            <span data-th-text="${weather.windDeg} + '° ' + ${weather.windSpeed} + ' km/h'"></span>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center h-100">
+                            <i class="bi bi-sunrise me-2"></i>
+                            <span data-th-text="'Sunrise ' + ${#temporals.format(weather.sunrise, 'HH:mm:ss')}"></span>
+                        </li>
+                    </ul>
+
+                    <ul class="list-group w-50">
+                        <li class="list-group-item d-flex align-items-center h-100">
+                            <i class="bi bi-thermometer-high me-2"></i>
+                            <span data-th-text="'Max ' + ${weather.tempMax} + '°C'"></span>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center h-100">
+                            <i class="bi bi-droplet-fill me-2"></i>
+                            <span data-th-text="'Humidity ' + ${weather.humidity} + '%'"></span>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center h-100">
+                            <i class="bi bi-arrow-down me-2"></i>
+                            <span data-th-text="'Pressure ' + ${weather.pressure} + ' hPa'"></span>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center h-100">
+                            <i class="bi bi-sunset me-2"></i>
+                            <span data-th-text="'Sunset ' + ${#temporals.format(weather.sunset, 'HH:mm:ss')}"></span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
     </div>
-    <p data-th-text="${weather.description}"></p>
-    <table>
-        <tbody>
-        <tr>
-            <td data-th-text="${weather.tempMin}"></td>
-            <td data-th-text="${weather.tempMax}"></td>
-        </tr>
-        <tr>
-            <td data-th-text="${weather.cloudiness}"></td>
-            <td data-th-text="${weather.humidity}"></td>
-        </tr>
-        <tr>
-            <td data-th-text="${weather.windDeg} + ' ' + ${weather.windSpeed} + ' km/h'"></td>
-            <td data-th-text="${weather.pressure}"></td>
-        </tr>
-        <tr>
-            <td data-th-text="${#temporals.format(weather.sunrise, 'HH:mm:ss')}"></td>
-            <td data-th-text="${#temporals.format(weather.sunset, 'HH:mm:ss')}"></td>
-        </tr>
-        </tbody>
-    </table>
-    <br>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script th:replace="fragments :: bootstrap-js"></script>
 </body>
 </html>

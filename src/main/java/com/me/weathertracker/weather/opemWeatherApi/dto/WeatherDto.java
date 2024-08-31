@@ -3,23 +3,24 @@ package com.me.weathertracker.weather.opemWeatherApi.dto;
 import lombok.Builder;
 import lombok.Value;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Value
 @Builder
 public class WeatherDto {
-    String name;
+    String locationName;
     int timezone;
-    double temp;
-    double feelsLike;
-    double tempMin;
-    double tempMax;
-    double pressure;
-    double humidity;
+    BigDecimal temp;
+    BigDecimal feelsLike;
+    BigDecimal tempMin;
+    BigDecimal tempMax;
+    int pressure;
+    int humidity;
     int cloudiness;
     LocalDateTime sunrise;
     LocalDateTime sunset;
     int windDeg;
-    double windSpeed;
+    BigDecimal windSpeed;
     String description;
 }
