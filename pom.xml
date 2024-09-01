@@ -12,20 +12,6 @@
 	<artifactId>weather-tracker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>weather-tracker</name>
-	<description>weather-tracker</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -70,6 +56,11 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-dbcp</artifactId>
+			<version>9.0.80</version>
 		</dependency>
 	</dependencies>
 
