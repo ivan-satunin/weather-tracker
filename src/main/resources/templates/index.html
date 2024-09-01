@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Weather tracker</title>
-    <link th:replace="fragments :: bootstrap-css"/>
-    <link th:replace="fragments :: bootstrap-icons"/>
+    <link th:replace="~{fragments :: bootstrap-css}"/>
+    <link th:replace="~{fragments :: bootstrap-icons}"/>
 </head>
 <body>
 <div th:replace="~{header}"></div>
@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-12">
                             <h3 class="card-title" data-th-text="${weather.locationName}"></h3>
-                            <h5 class="card-subtitle mb-5 text-muted">Current time</h5>
+                            <h5 class="card-subtitle mb-5 text-muted" th:text="${#temporals.format(weather.currentDate, 'HH:mm')}"></h5>
                         </div>
                     </div>
                     <div class="row">
@@ -81,6 +81,6 @@
     </div>
 </div>
 
-<script th:replace="fragments :: bootstrap-js"></script>
+<script th:replace="~{fragments :: bootstrap-js}"></script>
 </body>
 </html>
