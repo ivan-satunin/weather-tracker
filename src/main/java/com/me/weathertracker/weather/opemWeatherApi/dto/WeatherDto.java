@@ -20,6 +20,7 @@ public class WeatherDto {
     int cloudiness;
     LocalDateTime sunrise;
     LocalDateTime sunset;
+    LocalDateTime currentDate;
     int windDeg;
     BigDecimal windSpeed;
     String description;

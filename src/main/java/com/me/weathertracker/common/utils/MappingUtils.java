@@ -9,8 +9,10 @@ import org.aspectj.lang.annotation.DeclareWarning;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.Date;
 
 @UtilityClass
@@ -21,30 +23,24 @@ public class MappingUtils {
         final var main = weatherApi.getMain();
         final var sys = weatherApi.getSys();
         final var wind = weatherApi.getWind();
+        final var timezone = weatherApi.getTimezone();
         return WeatherDto.builder()
                 .locationName(weatherApi.getName())
-                .feelsLike(toCelsius(main.getFeelsLike()))
-                .temp(toCelsius(main.getTemp()))
-                .feelsLike(toCelsius(main.getFeelsLike()))
-                .tempMin(toCelsius(main.getTempMin()))
-                .tempMax(toCelsius(main.getTempMax()))
+                .currentDate(weatherApi.getDt().atOffset(timezone).toLocalDateTime())
+                .feelsLike(main.getFeelsLike())
+                .temp(main.getTemp())
+                .feelsLike(main.getFeelsLike())
+                .tempMin(main.getTempMin())
+                .tempMax(main.getTempMax())
                 .cloudiness(weatherApi.getClouds().getAll())
                 .humidity(main.getHumidity())
                 .pressure(main.getPressure())
                 .description(weather.getDescription())
-                .windDeg(wind.getDeg() )
-                .windSpeed(BigDecimal.valueOf(wind.getSpeed()).setScale(2, RoundingMode.HALF_UP))
-                .sunrise(secondsToLocalDateTime(sys.getSunrise()))
-                .sunset(secondsToLocalDateTime(sys.getSunset()))
+                .windDeg(wind.getDeg())
+                .windSpeed(wind.getSpeed().setScale(2, RoundingMode.HALF_UP))
+                .sunrise(sys.getSunrise().atOffset(timezone).toLocalDateTime())
+                .sunset(sys.getSunset().atOffset(timezone).toLocalDateTime())
                 .build();
-    }
-
-    private static BigDecimal toCelsius(double kelvinTemp) {
-        return BigDecimal.valueOf(kelvinTemp).subtract(BigDecimal.valueOf(273)).setScale(2, RoundingMode.HALF_UP);    //TODO magic number
-    }
-
-    private static LocalDateTime secondsToLocalDateTime(long seconds) {
-        return new Date(seconds).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
     public static LocationDto locationApiToDto(LocationApiResponse locationApi) {
