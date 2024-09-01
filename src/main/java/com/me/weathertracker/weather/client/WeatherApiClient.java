@@ -34,6 +34,7 @@ public class WeatherApiClient implements WeatherService {
                         .queryParam("appid", appid)
                         .queryParam("lon", lon)
                         .queryParam("lat", lat)
+                        .queryParam("units", "metric")
                         .build()
                 )
                 .retrieve()
@@ -50,7 +51,7 @@ public class WeatherApiClient implements WeatherService {
             return Collections.emptyList();
         }
         return trackedLocationService.findAll().stream()
-                .filter(location -> location.getUser().equals(currentUser))
+                .filter(location -> location.getUser().getId().equals(currentUser.getId()))
                 .map(this::find)
                 .toList();
 
