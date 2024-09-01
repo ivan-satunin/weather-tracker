@@ -8,7 +8,6 @@ import org.springframework.web.client.RestClient;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.Date;
 
 @SpringBootTest
 class RestClientTest {

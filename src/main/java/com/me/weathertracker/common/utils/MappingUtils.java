@@ -5,15 +5,8 @@ import com.me.weathertracker.weather.opemWeatherApi.dto.WeatherDto;
 import com.me.weathertracker.weather.opemWeatherApi.response.LocationApiResponse;
 import com.me.weathertracker.weather.opemWeatherApi.response.WeatherApiResponse;
 import lombok.experimental.UtilityClass;
-import org.aspectj.lang.annotation.DeclareWarning;
 
-import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.util.Date;
 
 @UtilityClass
 public class MappingUtils {
