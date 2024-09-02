@@ -22,6 +22,7 @@ public class WeatherApiResponse {
     private LocalDateTime dt;
     @JsonDeserialize(using = ZoneOffsetJsonDeserializer.class)
     private ZoneOffset timezone;
+    private Coord coord;
     private String name;
     private Wind wind;
     @JsonProperty("weather")
@@ -58,6 +59,7 @@ public class WeatherApiResponse {
         private LocalDateTime sunrise;
         @JsonDeserialize(using = UnixDateTimeJsonDeserializer.class)
         private LocalDateTime sunset;
+        private String country;
     }
 
     @Getter

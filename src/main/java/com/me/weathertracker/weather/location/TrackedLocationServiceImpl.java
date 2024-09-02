@@ -3,6 +3,7 @@ package com.me.weathertracker.weather.location;
 import com.me.weathertracker.common.utils.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,17 +19,24 @@ public class TrackedLocationServiceImpl implements TrackedLocationService {
     }
 
     @Override
-    public Location track(String name, BigDecimal latitude, BigDecimal longitude) {
-        final var maybeLocation = trackedLocationRepository.findByNameCoordAndUser(name, latitude, longitude, SecurityUtils.currentUser());
+    @Transactional
+    public Location track(String locationName, BigDecimal latitude, BigDecimal longitude) {
+        final var maybeLocation = trackedLocationRepository.findByNameCoordAndUser(latitude, longitude, SecurityUtils.currentUser());
         if (maybeLocation.isPresent())
             return maybeLocation.get();
 
         final var location = Location.builder()
-                .name(name)
+                .name(locationName)
                 .latitude(latitude)
                 .longitude(longitude)
                 .user(SecurityUtils.currentUser())
                 .build();
         return trackedLocationRepository.save(location);
+    }
+
+    @Override
+    @Transactional
+    public void stopTrack(BigDecimal latitude, BigDecimal longitude) {
+        trackedLocationRepository.deleteByCoordAndUser(latitude, longitude, SecurityUtils.currentUser());
     }
 }

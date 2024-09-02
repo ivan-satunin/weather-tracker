@@ -8,9 +8,11 @@ import java.util.Optional;
 
 public interface TrackedLocationRepository {
 
-    Optional<Location> findByNameCoordAndUser(String name, BigDecimal latitude, BigDecimal longitude, AppUser user);
+    Optional<Location> findByNameCoordAndUser(BigDecimal latitude, BigDecimal longitude, AppUser user);
 
     List<Location> findAll();
 
     Location save(Location location);
+
+    void deleteByCoordAndUser(BigDecimal latitude, BigDecimal longitude, AppUser user);
 }

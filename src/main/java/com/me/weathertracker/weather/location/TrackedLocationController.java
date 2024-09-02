@@ -23,4 +23,13 @@ public class TrackedLocationController {
         trackedLocationService.track(q, lat, lon);
         return "redirect:/weather-tracker";
     }
+
+    @PostMapping("stop")
+    public String stopTrackLocation(
+            @RequestParam BigDecimal lat,
+            @RequestParam BigDecimal lon
+    ) {
+        trackedLocationService.stopTrack(lat, lon);
+        return "redirect:/weather-tracker";
+    }
 }

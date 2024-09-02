@@ -1,7 +1,6 @@
 package com.me.weathertracker.auth;
 
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -16,35 +15,22 @@ public class UserRepositoryImpl implements UserRepository {
             WHERE u.login = :login
             """;
 
-    private final EntityManagerFactory entityManagerFactory;
+    private final EntityManager entityManager;
 
     @Override
     public Optional<AppUser> findByLogin(String login) {
-        EntityTransaction transaction = null;
-        try (var session = entityManagerFactory.createEntityManager()) {
-            transaction = session.getTransaction();
-            transaction.begin();
-            final var resultUser = session.createQuery(FIND_BY_LOGIN_HQL, AppUser.class)
+        try {
+            final var resultUser = entityManager.createQuery(FIND_BY_LOGIN_HQL, AppUser.class)
                     .setParameter("login", login).getSingleResult();
             return Optional.of(resultUser);
         } catch (NoResultException noResultException) {
             return Optional.empty();
-        } finally {
-            if (transaction != null)
-                transaction.commit();
         }
     }
 
     @Override
     public AppUser save(AppUser user) {
-        try (var session = entityManagerFactory.createEntityManager()) {
-            final var transaction = session.getTransaction();
-            transaction.begin();
-
-            session.persist(user);
-
-            transaction.commit();
-            return user;
-        }
+        entityManager.persist(user);
+        return user;
     }
 }

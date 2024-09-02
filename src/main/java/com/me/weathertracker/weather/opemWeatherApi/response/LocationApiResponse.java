@@ -12,15 +12,8 @@ public class LocationApiResponse {
     private Sys sys;
     private String name;
 
-    @Getter
     @Setter
-    public static class Coord {
-        private BigDecimal lon;
-        private BigDecimal lat;
-    }
-
     @Getter
-    @Setter
     public static class Sys {
         private String country;
     }

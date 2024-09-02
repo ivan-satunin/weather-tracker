@@ -26,7 +26,9 @@ public class LocationApiClient implements SearchLocationService {
                 .uri(uri -> uri
                         .queryParam("appid", appid)
                         .queryParam("q", name)
-                        .build())
+                        .queryParam("units", "metric")
+                        .build()
+                )
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError, (request, response) -> {
                     throw new LocationApiNofFoundException(name);

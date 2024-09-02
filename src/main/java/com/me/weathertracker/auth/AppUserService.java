@@ -4,6 +4,7 @@ import com.me.weathertracker.common.exception.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -13,6 +14,7 @@ public class AppUserService implements UserService {
     private final UserValidator userValidator;
 
     @Override
+    @Transactional
     public void register(String login, String password) {
         final var user = AppUser.builder().login(login).password(password).build();
         final var validationResult = userValidator.validate(user);

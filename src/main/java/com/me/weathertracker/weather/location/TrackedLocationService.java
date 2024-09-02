@@ -8,5 +8,7 @@ public interface TrackedLocationService {
 
     List<Location> findAll();
 
-    Location track(String name, BigDecimal latitude, BigDecimal longitude);
+    Location track(String locationName, BigDecimal latitude, BigDecimal longitude);
+
+    void stopTrack(BigDecimal latitude, BigDecimal longitude);
 }

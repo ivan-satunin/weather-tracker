@@ -15,10 +15,16 @@ public class MappingUtils {
         final var weather = weatherApi.getWeathers().get(0);
         final var main = weatherApi.getMain();
         final var sys = weatherApi.getSys();
+        final var locationDto = LocationDto.builder()
+                .name(weatherApi.getName())
+                .lat(weatherApi.getCoord().getLat())
+                .lon(weatherApi.getCoord().getLon())
+                .country(sys.getCountry())
+                .build();
         final var wind = weatherApi.getWind();
         final var timezone = weatherApi.getTimezone();
         return WeatherDto.builder()
-                .locationName(weatherApi.getName())
+                .location(locationDto)
                 .currentDate(weatherApi.getDt().atOffset(timezone).toLocalDateTime())
                 .feelsLike(main.getFeelsLike())
                 .temp(main.getTemp())

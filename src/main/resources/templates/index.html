@@ -18,7 +18,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <h3 class="card-title" data-th-text="${weather.locationName}"></h3>
+                            <h3 class="card-title" data-th-text="${weather.location.name}"></h3>
                             <h5 class="card-subtitle mb-5 text-muted" th:text="${#temporals.format(weather.currentDate, 'HH:mm')}"></h5>
                         </div>
                     </div>
@@ -75,7 +75,11 @@
                         </li>
                     </ul>
                 </div>
-
+                <form method="post" th:action="@{/weather-tracker/track/stop}">
+                    <input type="hidden" name="lat" th:value="${weather.location.lat}">
+                    <input type="hidden" name="lon" th:value="${weather.location.lon}">
+                    <button type="submit" class="btn btn-warning mt-2 text-white">Stop track</button>
+                </form>
             </div>
         </div>
     </div>

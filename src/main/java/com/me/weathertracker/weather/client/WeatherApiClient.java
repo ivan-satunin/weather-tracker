@@ -5,6 +5,7 @@ import com.me.weathertracker.weather.location.TrackedLocationService;
 import com.me.weathertracker.common.utils.MappingUtils;
 import com.me.weathertracker.common.utils.SecurityUtils;
 import com.me.weathertracker.weather.WeatherService;
+import com.me.weathertracker.weather.opemWeatherApi.response.Coord;
 import com.me.weathertracker.weather.opemWeatherApi.response.WeatherApiResponse;
 import com.me.weathertracker.weather.opemWeatherApi.dto.WeatherDto;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +42,7 @@ public class WeatherApiClient implements WeatherService {
                 .body(WeatherApiResponse.class);
         if (weatherApiResp == null)
             throw new SmthWentWrongException();
+        weatherApiResp.setCoord(new Coord(lon, lat));// Set the old coordinates because the current api can return changed coordinate which creates an inconsistency with db.
         return MappingUtils.weatherApiToDto(weatherApiResp);
     }
 
