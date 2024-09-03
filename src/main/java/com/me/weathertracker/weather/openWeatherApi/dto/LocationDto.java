@@ -1,4 +1,4 @@
-package com.me.weathertracker.weather.opemWeatherApi.dto;
+package com.me.weathertracker.weather.openWeatherApi.dto;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,9 +1,7 @@
-package com.me.weathertracker.weather.opemWeatherApi.response;
+package com.me.weathertracker.weather.openWeatherApi.response;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import java.math.BigDecimal;
 
 @Getter
 @Setter

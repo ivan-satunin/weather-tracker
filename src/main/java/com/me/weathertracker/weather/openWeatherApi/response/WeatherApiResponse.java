@@ -1,4 +1,4 @@
-package com.me.weathertracker.weather.opemWeatherApi.response;
+package com.me.weathertracker.weather.openWeatherApi.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

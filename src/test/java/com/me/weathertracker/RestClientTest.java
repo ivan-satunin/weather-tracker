@@ -1,6 +1,6 @@
 package com.me.weathertracker;
 
-import com.me.weathertracker.weather.opemWeatherApi.response.LocationApiResponse;
+import com.me.weathertracker.weather.openWeatherApi.response.LocationApiResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.client.RestClient;

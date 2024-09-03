@@ -1,4 +1,4 @@
-package com.me.weathertracker.weather.opemWeatherApi.response;
+package com.me.weathertracker.weather.openWeatherApi.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

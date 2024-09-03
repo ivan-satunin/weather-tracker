@@ -1,9 +1,9 @@
 package com.me.weathertracker.common.utils;
 
-import com.me.weathertracker.weather.opemWeatherApi.dto.LocationDto;
-import com.me.weathertracker.weather.opemWeatherApi.dto.WeatherDto;
-import com.me.weathertracker.weather.opemWeatherApi.response.LocationApiResponse;
-import com.me.weathertracker.weather.opemWeatherApi.response.WeatherApiResponse;
+import com.me.weathertracker.weather.openWeatherApi.dto.LocationDto;
+import com.me.weathertracker.weather.openWeatherApi.dto.WeatherDto;
+import com.me.weathertracker.weather.openWeatherApi.response.LocationApiResponse;
+import com.me.weathertracker.weather.openWeatherApi.response.WeatherApiResponse;
 import lombok.experimental.UtilityClass;
 
 import java.math.RoundingMode;

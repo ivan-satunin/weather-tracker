@@ -20,7 +20,6 @@ public class TrackedLocationRepositoryImpl implements TrackedLocationRepository 
             SELECT loc FROM Location loc
             WHERE loc.user = :user AND loc.longitude = :lon AND loc.latitude = :lat
             """;
-    //    private final EntityManagerFactory entityManagerFactory;
     private final EntityManager entityManager;
 
     @Override
