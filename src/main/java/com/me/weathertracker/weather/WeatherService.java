@@ -8,11 +8,5 @@ import java.util.List;
 
 public interface WeatherService {
 
-    WeatherDto find(BigDecimal lon, BigDecimal lat);
-
-    default WeatherDto find(Location location) {
-        return find(location.getLongitude(), location.getLatitude());
-    }
-
     List<WeatherDto> findWeathersForTrackedLocations();
 }

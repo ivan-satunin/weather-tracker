@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Builder
 public class WeatherDto {
     LocationDto location;
-    int timezone;
     BigDecimal temp;
     BigDecimal feelsLike;
     BigDecimal tempMin;

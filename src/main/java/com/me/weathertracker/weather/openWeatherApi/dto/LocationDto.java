@@ -1,17 +1,14 @@
 package com.me.weathertracker.weather.openWeatherApi.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
+@Value
 @Builder
 public class LocationDto {
-    private String name;
-    private String country;
-    private BigDecimal lon;
-    private BigDecimal lat;
+    String name;
+    String country;
+    BigDecimal lon;
+    BigDecimal lat;
 }

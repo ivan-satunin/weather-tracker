@@ -7,24 +7,27 @@ import com.me.weathertracker.weather.SearchLocationService;
 import com.me.weathertracker.weather.openWeatherApi.response.LocationApiResponse;
 import com.me.weathertracker.weather.openWeatherApi.dto.LocationDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.util.UriComponentsBuilder;
 
-@RequiredArgsConstructor
 @Component
-public class LocationApiClient implements SearchLocationService {
+public class LocationApiClient extends OpenWeatherApiClient implements SearchLocationService {
 
-    @Value("${weather.api.key}")
-    private String appid;
-    private final RestClient openWeatherRestClient;
+    public LocationApiClient(RestClient.Builder builder, @Value("${weather.api.uri}") String openWeatherBaseUri) {
+        super(builder, openWeatherBaseUri);
+    }
 
     @Override
     public LocationDto find(String name) {
+        if (name.isEmpty() || name.isBlank())
+            throw new LocationApiNofFoundException(name);
         final var locationApiResp = openWeatherRestClient.get()
                 .uri(uri -> uri
-                        .queryParam("appid", appid)
+                        .queryParam("appid", getAppid())
                         .queryParam("q", name)
                         .queryParam("units", "metric")
                         .build()

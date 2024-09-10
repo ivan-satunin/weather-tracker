@@ -2,13 +2,11 @@ package com.me.weathertracker.weather.openWeatherApi.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.me.weathertracker.common.deserialize.UnixDateTimeJsonDeserializer;
 import com.me.weathertracker.common.deserialize.ZoneOffsetJsonDeserializer;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 
@@ -18,8 +16,7 @@ public class WeatherApiResponse {
     private Main main;
     private Clouds clouds;
     private Sys sys;
-    @JsonDeserialize(using = UnixDateTimeJsonDeserializer.class)
-    private LocalDateTime dt;
+    private long dt;
     @JsonDeserialize(using = ZoneOffsetJsonDeserializer.class)
     private ZoneOffset timezone;
     private Coord coord;
@@ -55,10 +52,8 @@ public class WeatherApiResponse {
     @Getter
     @Setter
     public static class Sys {
-        @JsonDeserialize(using = UnixDateTimeJsonDeserializer.class)
-        private LocalDateTime sunrise;
-        @JsonDeserialize(using = UnixDateTimeJsonDeserializer.class)
-        private LocalDateTime sunset;
+        private long sunrise;
+        private long sunset;
         private String country;
     }
 
