@@ -1,0 +1,34 @@
+{
+  "coord": {
+    "lon": -71.0598,
+    "lat": 42.3584
+  },
+  "weather": [
+    {
+      "description": "overcast clouds"
+    }
+  ],
+  "main": {
+    "temp": 16.13,
+    "feels_like": 16.1,
+    "temp_min": 14.76,
+    "temp_max": 17.28,
+    "pressure": 1014,
+    "humidity": 88
+  },
+  "wind": {
+    "speed": 4.12,
+    "deg": 340
+  },
+  "clouds": {
+    "all": 100
+  },
+  "dt": 1725704209,
+  "sys": {
+    "country": "US",
+    "sunrise": 1725704182,
+    "sunset": 1725750492
+  },
+  "timezone": -14400,
+  "name": "Boston"
+}

@@ -6,13 +6,10 @@ import com.me.weathertracker.weather.LocationApiNofFoundException;
 import com.me.weathertracker.weather.SearchLocationService;
 import com.me.weathertracker.weather.openWeatherApi.response.LocationApiResponse;
 import com.me.weathertracker.weather.openWeatherApi.dto.LocationDto;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @Component
 public class LocationApiClient extends OpenWeatherApiClient implements SearchLocationService {
